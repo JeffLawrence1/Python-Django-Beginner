@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>You have submitted this form {{request.session.tries}} times</h3>
+    Submitted info: Name: {{request.session.name}}
+    <br> Dojo Location: {{request.session.location}}
+    <br> Language: {{request.session.language}}
+    <br> Comments: {{request.session.comment}}
+    <br>
+
+    <form class="" action="/back" method="post">
+        {% csrf_token %}
+        <input type="submit" name="submit" value="Go Back">
+    </form>
+</body>
+
+</html>

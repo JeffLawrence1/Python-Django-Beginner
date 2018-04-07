@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'session_words_app/css/sesh.css' %}" media="screen" title="no title" charset="utf-8">
+</head>
+
+<body>
+    <h1> Add a new word</h1>
+    <div style="display: inline-block; width: 30%">
+        <form action="/add" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="word">Word!!!!</label>
+                <input type="text" name="content" value="">
+
+            </div>
+            <br>
+            <div>
+                <label for="color">Colorize!:</label>
+                <label><input type="radio" name="color" value="red">Red</label>
+                <label><input checked="checked" type="radio" name="color" value="green">Green</label>
+                <label><input type="radio" name="color" value="blue">Blue</label>
+
+            </div>
+            <br>
+            <div>
+                <label for="show_big">BIGGUN!</label>
+                <input type="checkbox" name="show_big" value="">
+
+            </div>
+            <br>
+            <input type="submit" value="Add to Session">
+        </form>
+    </div>
+    <div style="display: inline-block; width: 30%">
+        <form action="/clear" method="post">
+            {% csrf_token %}
+            <input type="submit" style="margin-left: 300px; background-color: red;" value="Clear"> </form> {% if request.session.word %} {% for word in request.session.word %}
+        <p><span style="color: {{word.color}}" class="{{word.big}}">{{word.content}}</span> - {{word.creation}}</p>
+        {% endfor %}{% endif %}
+
+    </div>
+</body>
+
+</html>
